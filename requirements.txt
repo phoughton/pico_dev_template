@@ -1,0 +1,2 @@
+micropython-rp2-stubs==1.19.1.*
+mpremote

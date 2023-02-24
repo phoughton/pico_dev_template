@@ -1,0 +1,16 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    // "python.analysis.diagnosticSeverityOverrides": {
+    //     "reportMissingModuleSource": "none"
+    // },
+    "python.analysis.typeshedPaths": [
+        "./stubs_etc/"
+    ],
+    "python.analysis.extraPaths": [
+        "./stubs_etc/stubs"
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+}
+
