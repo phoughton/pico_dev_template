@@ -10,5 +10,5 @@ python -m pip install -r requirements.txt
 echo "Link to stubs:"
 mkdir stubs_etc
 cd stubs_etc
-ln -s ../venv/lib/python3.10/site-packages stubs
-ln -s ../venv/lib/python3.10/site-packages stdlib
+ln -s ../venv/lib/python3.*/site-packages stubs
+ln -s ../venv/lib/python3.*/site-packages stdlib
