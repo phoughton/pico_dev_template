@@ -9,11 +9,18 @@ The `configure.bsh` script:
 4. Installs mpremote so you can connect to the Pico and run code on it easily.
 
 
-Steps:
+Setup Steps:
 
 1. When you create your new repo, use this one as the template (you may wish to fork this repo)
-1. In your cloned repo, execute the `configure.bsh` script - Yes your need to be using Linux.
-1. Activate the virtual environment
-1. Then you should be able to develop withoput micropython import errors - as VS Code will be using the stubs.
+2. In your cloned repo, execute:
 
+ ```bash
+ configure.bsh
+ ``` 
+     (Yes you need to be using Linux.)
 
+3. Activate the virtual environment:
+```bash
+source venv/bin/activate
+```
+4. Then you should be able to develop withoput micropython import errors - as VS Code will be using the stubs.
