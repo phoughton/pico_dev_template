@@ -1,14 +1,61 @@
 #!/bin/bash
 
+#!/bin/bash
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    echo "This script is being executed directly."
+    echo "Please 'source' it instead."
+    exit 2
+else
+    echo "This script is being sourced. You will be able to use the virtual environment immediatly."
+fi
+
+
+# Check if python3 is installed
+if ! command -v python3 &> /dev/null
+then
+    echo "python3 could not be found"
+    exit
+fi
+
 echo "Set up the environment:"
-python -m venv venv
+python3 -m venv venv
+# if that didn't work display an error message
+if [ $? -ne 0 ]; then
+    echo "venv could not be created"
+    exit
+fi
 
+# Source the virtual environment
 source venv/bin/activate
+# then check if that worked
+if [ $? -ne 0 ]; then
+    echo "venv could not be sourced"
+    exit
+fi
 
-python -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
-echo "Link to stubs:"
-mkdir stubs_etc
+# Create a directory for the stubs
+# but only if it doesnt exist
+if [ ! -d "stubs_etc" ]; then
+    mkdir stubs_etc
+fi
 cd stubs_etc
-ln -s ../venv/lib/python3.*/site-packages stubs
-ln -s ../venv/lib/python3.*/site-packages stdlib
+
+## if the link doesnt exist then dont try and create it
+if [ ! -L "stubs" ]; then
+    echo "Linking to stubs"
+    ln -s ../venv/lib/python3.*/site-packages stubs
+fi
+
+# same for this link
+if [ ! -L "stdlib" ]; then
+    echo "Linking to stdlib"
+    ln -s ../venv/lib/python3.*/site-packages stdlib
+fi
+
+# return to the root directory
+cd ..
+
+echo "Done"
